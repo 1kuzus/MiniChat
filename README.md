@@ -1,4 +1,2 @@
 # MiniChat
-something2
-something
-123456test
+test 0625
