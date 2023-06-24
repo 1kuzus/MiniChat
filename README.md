@@ -1,2 +1,2 @@
 # MiniChat
-edit 0625
+t 0625
