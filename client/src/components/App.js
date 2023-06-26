@@ -1,13 +1,14 @@
-import React from "react"
-import Login from "./Login"
+import React from 'react'
+import Login from './Login'
+import useLocalStorage from '../hooks/useLocalStorage'
 
-function App()
+export default function App()
 {
+    const [id,setId]=useLocalStorage('id')
     return (
-        <div>
-            <Login/>
-        </div>
+        <>
+            {id}
+            <Login setId={setId}/>
+        </>
     )
 }
-
-export default App
