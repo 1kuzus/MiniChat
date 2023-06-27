@@ -10,7 +10,10 @@ export default function Conversations()
         <ListGroup variant="flush">
             {conversations.map((conversation,index)=>
             (
-                <ListGroup.Item key={index}>
+                <ListGroup.Item
+                    key={index}
+                    action
+                >
                     {conversation.contactList.map(c=>c.name).join(', ')}
                 </ListGroup.Item>
             ))}
