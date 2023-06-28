@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+import OpenConversation from './OpenConversation'
 
 export default function Dashboard(props)
 {
