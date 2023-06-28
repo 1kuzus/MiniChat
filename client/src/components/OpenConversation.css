@@ -1,0 +1,8 @@
+.open-conversation-container {
+    flex: 1;
+    overflow: hidden;
+    height:'100%';
+}
+.messages {
+    overflow: auto;
+}
