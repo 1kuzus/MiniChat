@@ -6,7 +6,6 @@ const ConversationsContext=createContext()
 
 function arrayEqual(a,b)
 {
-    console.log(a,b);
     a.sort()
     b.sort()
     return a.join('')===b.join('')
@@ -54,7 +53,7 @@ export function ConversationsProvider(props)
                 {
                     isNewConversation=false
                     return {
-                        idlist:conversation.idList,
+                        idList:conversation.idList,
                         messages:[...conversation.messages,newMessage]
                     }
                 }
@@ -79,11 +78,13 @@ export function ConversationsProvider(props)
         const messages=conversation.messages.map((message)=>
         {
             const sender=contacts.find(contact=>(contact.id===message.senderId))//找到senderId对应的联系人
+            //如果senderId是登录账号，则contacts不会包含此id，sender为undefined
+            const senderName=(sender&&sender.name)||'You'//如果sender是登录账号，设名称为You
             return {
-                senderId:sender.id,
-                senderName:sender.name,//新加入
+                senderId:message.senderId,
+                senderName,//新加入
                 text:message.text,
-                fromMe:(id===sender.id)//新加入
+                fromMe:(id===message.senderId)//新加入
             }
         })
         const selected=index===selectConversationIndex

@@ -18,7 +18,7 @@ export default function OpenConversation()
     return (
         <div className="open-conversation-container">
             <div className="messages-container">
-                {selectedConversation.messages}
+                {JSON.stringify(selectedConversation.messages)}
             </div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -28,6 +28,7 @@ export default function OpenConversation()
                             required
                             value={text}
                             onChange={(evt)=>{setText(evt.target.value)}}
+                            style={{outline:'none'}}
                         />
                         <Button type="submit">send</Button>
                     </InputGroup>
