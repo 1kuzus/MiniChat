@@ -20,19 +20,21 @@ export default function OpenConversation()
             <div className="messages-container">
                 {JSON.stringify(selectedConversation.messages)}
             </div>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <InputGroup>
-                        <Form.Control
-                            as="textarea"
-                            required
-                            value={text}
-                            onChange={(evt)=>{setText(evt.target.value)}}
-                        />
-                        <Button type="submit">send</Button>
-                    </InputGroup>
-                </Form.Group>
-            </Form>
+            <div className="send-container">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group>
+                        <InputGroup className="send-input">
+                            <Form.Control
+                                as="textarea"
+                                required
+                                value={text}
+                                onChange={(evt)=>{setText(evt.target.value)}}
+                            />
+                        </InputGroup>
+                        <Button className="send-btn" type="submit">send</Button>
+                    </Form.Group>
+                </Form>
+            </div>
         </div>
     )
 }

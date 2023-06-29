@@ -1,8 +1,23 @@
 .open-conversation-container {
-    flex: 1;
+    /* flex: 1;
     /* overflow: hidden; */
-    height:'100%';
+    /* height:'100%'; */
 }
 .messages {
-    overflow: auto;
+    /* overflow: auto; */
+}
+
+.send-container {
+    padding: 20px;
+    /* background-color: pink; */
+}
+.send-input {
+    margin-bottom: 16px;
+}
+.send-input textarea {
+    border-radius: 2px;
+    resize: none;
+}
+.send-btn {
+    float: right;
 }
