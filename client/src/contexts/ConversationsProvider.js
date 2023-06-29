@@ -4,10 +4,25 @@ import {useContacts} from './ContactsProvider'
 
 const ConversationsContext=createContext()
 
+function arrayEqual(a,b)
+{
+}
+
 export function useConversations()
 {
     return useContext(ConversationsContext)
 }
+
+/*
+idList: string[]    参与对话的id列表
+
+senderId: string            消息发送者id
+text: string                消息内容
+message: {senderId,text}    消息对象
+messages: message[]
+
+conversation: {idList,messages}  对话对象
+*/
 
 export function ConversationsProvider(props)
 {
@@ -30,16 +45,32 @@ export function ConversationsProvider(props)
         return {contactList,messages:conversation.messages,selected}//构造出新的conversations对象
     })
 
-    const addMessageToConversation=({senderId,recipients,text})=>
+    const addMessageToConversation=({senderId,idList,text})=>
     {
         setConversations((prevConversations)=>
         {
-            let changed=false//判断是否增添了新的对话
-            if(changed)
+            let isNewConversation=true//判断是否增添了新的对话
+            const newMessage={senderId,text}
+            const newConversations=prevConversations.map((conversation)=>
             {
+                if(arrayEqual(conversation.idList,idList))
+                {
+                    isNewConversation=false
+                    return {
+                        idlist:conversation.idList,
+                        messages:[...conversation.messages,newMessage]
+                    }
+                }
+                else return conversation
+            })
+
+            if(isNewConversation)
+            {
+                return [...prevConversations,{idList,messages:[newMessage]}]
             }
             else
             {
+                return newConversations
             }
         })
     }
