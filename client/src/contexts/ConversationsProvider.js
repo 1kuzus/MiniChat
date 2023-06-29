@@ -30,14 +30,23 @@ export function ConversationsProvider(props)
         return {contactList,messages:conversation.messages,selected}//构造出新的conversations对象
     })
 
-    const addMessageToConversation=({sender,recipients,text})=>
+    const addMessageToConversation=({senderId,recipients,text})=>
     {
-
+        setConversations((prevConversations)=>
+        {
+            let changed=false//判断是否增添了新的对话
+            if(changed)
+            {
+            }
+            else
+            {
+            }
+        })
     }
 
     const sendMessage=(recipients,text)=>
     {
-        addMessageToConversation()
+        addMessageToConversation({senderId:id,recipients,text})
     }
 
     const value=
