@@ -28,7 +28,6 @@ export default function OpenConversation()
                             required
                             value={text}
                             onChange={(evt)=>{setText(evt.target.value)}}
-                            style={{outline:'none'}}
                         />
                         <Button type="submit">send</Button>
                     </InputGroup>
