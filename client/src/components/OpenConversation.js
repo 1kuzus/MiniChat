@@ -17,15 +17,8 @@ export default function OpenConversation()
 
     return (
         <div className="open-conversation-container">
-            <div className="messages">
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
-                <div style={{height:'200px'}}>123</div>
+            <div className="messages-container">
+                {selectedConversation.messages}
             </div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>

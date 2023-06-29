@@ -6,6 +6,10 @@ const ConversationsContext=createContext()
 
 function arrayEqual(a,b)
 {
+    console.log(a,b);
+    a.sort()
+    b.sort()
+    return a.join('')===b.join('')
 }
 
 export function useConversations()
@@ -37,16 +41,9 @@ export function ConversationsProvider(props)
         setConversations((prevConversations)=>[...prevConversations,{idList,messages:[]}])
     }
 
-    //原来的conversations中每个对话对象只有id列表和消息列表，现在希望加入name字段
-    const formattedConversations=conversations.map((conversation,index)=>
+    const sendMessage=(idList,text)=>
     {
-        const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id)))
-        const selected=index===selectConversationIndex
-        return {contactList,messages:conversation.messages,selected}//构造出新的conversations对象
-    })
-
-    const addMessageToConversation=({senderId,idList,text})=>
-    {
+        const senderId=id
         setConversations((prevConversations)=>
         {
             let isNewConversation=true//判断是否增添了新的对话
@@ -75,10 +72,23 @@ export function ConversationsProvider(props)
         })
     }
 
-    const sendMessage=(recipients,text)=>
+    //原来的conversations中每个对话对象只有id列表和消息列表，现在希望加入name字段
+    const formattedConversations=conversations.map((conversation,index)=>
     {
-        addMessageToConversation({senderId:id,recipients,text})
-    }
+        const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id)))
+        const messages=conversation.messages.map((message)=>
+        {
+            const sender=contacts.find(contact=>(contact.id===message.senderId))//找到senderId对应的联系人
+            return {
+                senderId:sender.id,
+                senderName:sender.name,//新加入
+                text:message.text,
+                fromMe:(id===sender.id)//新加入
+            }
+        })
+        const selected=index===selectConversationIndex
+        return {contactList,messages,selected}//构造出新的conversations对象
+    })
 
     const value=
     {

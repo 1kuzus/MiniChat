@@ -12,7 +12,7 @@ export default function Dashboard(props)
     return (
         <div style={{display:'flex',height:'100vh'}}>
             <Sidebar id={id}/>
-            <OpenConversation/>
+            {selectedConversation && <OpenConversation/>}
         </div>
     )
 }
