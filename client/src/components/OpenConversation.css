@@ -1,5 +1,5 @@
 .open-conversation-container {
-    /* flex: 1;
+    flex: 1;
     /* overflow: hidden; */
     /* height:'100%'; */
 }
@@ -9,7 +9,6 @@
 
 .send-container {
     padding: 20px;
-    /* background-color: pink; */
 }
 .send-input {
     margin-bottom: 16px;
