@@ -11,7 +11,7 @@ export function useConversations()
 
 export function ConversationsProvider(props)
 {
-    const {children}=props
+    const {children,id}=props
     const {contacts}=useContacts()
     const [conversations,setConversations]=useLocalStorage('conversations',[])
     const [selectConversationIndex,setSelectConversationIndex]=useState(0)
@@ -29,13 +29,24 @@ export function ConversationsProvider(props)
         const selected=index===selectConversationIndex
         return {contactList,messages:conversation.messages,selected}//构造出新的conversations对象
     })
-    
+
+    const addMessageToConversation=({sender,recipients,text})=>
+    {
+
+    }
+
+    const sendMessage=(recipients,text)=>
+    {
+        addMessageToConversation()
+    }
+
     const value=
     {
         conversations:formattedConversations,
         createConversation,
         setSelectConversationIndex,
         selectedConversation:formattedConversations[selectConversationIndex],
+        sendMessage,
     }
     
     return (
