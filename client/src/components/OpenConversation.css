@@ -1,4 +1,6 @@
 .open-conversation-container {
+    
+    position: relative;
     flex: 1;
     /* overflow: hidden; */
     /* height:'100%'; */
@@ -8,15 +10,33 @@
 }
 
 .send-container {
-    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    /* background-color: white; */
+    border-top:  1px solid #dee2e6;
 }
 .send-input {
     margin-bottom: 16px;
 }
 .send-input textarea {
+    height: 160px;
     border-radius: 2px;
     resize: none;
 }
 .send-btn {
     float: right;
+}
+.open-conversation-container ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.open-conversation-container ::-webkit-scrollbar-thumb {
+    background-color: #dee2e6;
+    border-radius: 3px;
+}
+.open-conversation-container ::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+    border-radius: 3px;
 }
