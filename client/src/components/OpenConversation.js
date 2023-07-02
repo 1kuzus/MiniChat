@@ -18,7 +18,14 @@ export default function OpenConversation()
     return (
         <div className="open-conversation-container">
             <div className="messages-container">
-                {JSON.stringify(selectedConversation.messages)}
+                {selectedConversation.messages.map((message)=>{
+                    const {fromMe,senderId,senderName,text}=message
+                    return (
+                        <div className="message-container" key={Math.random()}>
+                            <div className="message-bubble">{text}</div>
+                        </div>
+                    )
+                })}
             </div>
             <div className="send-container">
                 <Form onSubmit={handleSubmit}>

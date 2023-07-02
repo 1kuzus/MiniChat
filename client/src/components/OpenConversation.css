@@ -5,7 +5,18 @@
     /* overflow: hidden; */
     /* height:'100%'; */
 }
-.messages {
+.messages-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(230,230,0,0.3);
+    /* overflow: auto; */
+}
+.message-container {
+    width: 100%;
+    margin: 2px;
+    background-color: pink;
     /* overflow: auto; */
 }
 
