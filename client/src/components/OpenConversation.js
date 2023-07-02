@@ -19,10 +19,17 @@ export default function OpenConversation()
         <div className="open-conversation-container">
             <div className="messages-container">
                 {selectedConversation.messages.map((message)=>{
-                    const {fromMe,senderId,senderName,text}=message
+                    const {fromMes,senderId,senderName,text}=message
+                    const fromMe=true;
                     return (
                         <div className="message-container" key={Math.random()}>
-                            <div className="message-bubble">{text}</div>
+                            <div className="message-bubble" style={{
+                                marginLeft:fromMe?'auto':'0',
+                                color:fromMe?'white':'black',
+                                backgroundColor:fromMe?'#0d6efd':'#ffffff',
+                                border:fromMe?'none':'1px solid #dddddd'
+                            }}>{text}</div>
+                            <div className="message-sender small" style={{marginLeft:fromMe?'auto':'0'}}>{senderName}</div>
                         </div>
                     )
                 })}
