@@ -1,6 +1,7 @@
 import React,{useContext,createContext,useState} from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import {useContacts} from './ContactsProvider'
+import {useSocket} from './SocketProvider'
 
 const ConversationsContext=createContext()
 
@@ -31,6 +32,7 @@ export function ConversationsProvider(props)
 {
     const {children,id}=props
     const {contacts}=useContacts()
+    const {socket}=useSocket()
     const [conversations,setConversations]=useLocalStorage('conversations',[])
     const [selectConversationIndex,setSelectConversationIndex]=useState(0)
 
