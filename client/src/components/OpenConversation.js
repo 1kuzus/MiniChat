@@ -26,7 +26,11 @@ export default function OpenConversation()
                     const {fromMe,senderId,senderName,text}=message
                     const isLast=selectedConversation.messages.length-1===index
                     return (
-                        <div className="message-container" ref={isLast?lastMessageRef:null}>
+                        <div 
+                            className="message-container"
+                            ref={isLast?lastMessageRef:null}
+                            key={index}
+                        >
                             <div className="message-bubble" style={{
                                 marginLeft:fromMe?'auto':'0',
                                 color:fromMe?'white':'black',
