@@ -16,8 +16,9 @@ export default function NewContactModal(props)
         closeModal()
     }
 
-    conat handleRandom=()=>
+    const handleRandom=()=>
     {
+        idRef.current.value=
     }
 
     return (
