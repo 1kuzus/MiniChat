@@ -1,4 +1,4 @@
-import React,{useRef,useState} from 'react'
+import React,{useEffect, useRef,useState} from 'react'
 import {Button,Form,InputGroup} from 'react-bootstrap'
 import {useConversations} from '../contexts/ConversationsProvider'
 import './OpenConversation.css'
@@ -8,8 +8,12 @@ export default function OpenConversation()
     const [text,setText]=useState('')
     const {sendMessage,selectedConversation}=useConversations()
     const lastMessageRef=useRef()
-
-    
+    useEffect(()=>{
+        if(lastMessageRef.current)
+        {
+            lastMessageRef.current.scrollIntoView()
+        }
+    })
 
     const handleSubmit=(evt)=>
     {
