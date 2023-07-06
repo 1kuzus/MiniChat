@@ -7,13 +7,6 @@ export default function OpenConversation()
 {
     const [text,setText]=useState('')
     const {sendMessage,selectedConversation}=useConversations()
-    const lastMessageRef=useRef()
-    useEffect(()=>{
-        if(lastMessageRef.current)
-        {
-            lastMessageRef.current.scrollIntoView()
-        }
-    })
 
     const handleSubmit=(evt)=>
     {
@@ -25,11 +18,10 @@ export default function OpenConversation()
     return (
         <div className="open-conversation-container">
             <div className="messages-container">
-                {selectedConversation.messages.map((message,index)=>{
+                {selectedConversation.messages.map((message)=>{
                     const {fromMe,senderId,senderName,text}=message
-                    const isLast=selectedConversation.messages.length-1===index
                     return (
-                        <div className="message-container" ref={isLast?lastMessageRef:null}>
+                        <div className="message-container">
                             <div className="message-bubble" style={{
                                 marginLeft:fromMe?'auto':'0',
                                 color:fromMe?'white':'black',
