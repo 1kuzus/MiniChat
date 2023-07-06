@@ -1,6 +1,7 @@
 import React,{useRef} from 'react'
 import {Modal,Form,Button} from 'react-bootstrap'
 import {useContacts} from '../contexts/ContactsProvider'
+import {v4 as uuidV4} from 'uuid'
 
 export default function NewContactModal(props)
 {
@@ -18,7 +19,8 @@ export default function NewContactModal(props)
 
     const handleRandom=()=>
     {
-        idRef.current.value=
+        idRef.current.value=uuidV4().slice(-12,-1)
+        nameRef.current.value=uuidV4().slice(-12,-1)
     }
 
     return (
