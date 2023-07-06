@@ -1,7 +1,10 @@
-const io=require('socket.io')(5000)
+const io=require('socket.io')(5000,{
+    cors:{origin:['http://localhost:3000']}
+})
 
 io.on('connection',(socket)=>
 {
+    console.log('connection!');
     const id=socket.handshake.query.id
     socket.join(id)
     socket.on('send-message',({idList,text})=>

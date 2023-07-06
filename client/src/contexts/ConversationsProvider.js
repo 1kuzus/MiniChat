@@ -32,16 +32,9 @@ export function ConversationsProvider(props)
 {
     const {children,id}=props
     const {contacts}=useContacts()
-    const {socket}=useSocket()
+    const socket=useSocket()
     const [conversations,setConversations]=useLocalStorage('conversations',[])
     const [selectConversationIndex,setSelectConversationIndex]=useState(0)
-
-    useEffect(()=>
-    {
-        if(socket===null) return
-        socket.on('receive-message',sendMessage)
-        return ()=>socket.off('receive-message')
-    },[socket,addMessageToConversation])
 
     const createConversation=(idList)=>
     {
@@ -67,7 +60,6 @@ export function ConversationsProvider(props)
                 }
                 else return conversation
             })
-
             if(isNewConversation)
             {
                 return [...prevConversations,{idList,messages:[newMessage]}]
@@ -85,9 +77,17 @@ export function ConversationsProvider(props)
         addMessageToConversation(id,idList,text)
     }
 
+    useEffect(()=>
+    {
+        if(!socket) return
+        socket.on('receive-message',addMessageToConversation)
+        return ()=>socket.off('receive-message')
+    },[socket,addMessageToConversation])
+
     //原来的conversations中每个对话对象只有id列表和消息列表，现在希望加入name字段
     const formattedConversations=conversations.map((conversation,index)=>
     {
+        console.log(conversation,'!!');
         const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id)))
         const messages=conversation.messages.map((message)=>
         {

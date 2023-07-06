@@ -23,7 +23,7 @@ export default function OpenConversation()
         <div className="open-conversation-container">
             <div className="messages-container">
                 {selectedConversation.messages.map((message,index)=>{
-                    const {fromMe,senderId,senderName,text}=message
+                    const {fromMe,senderName,text}=message
                     const isLast=selectedConversation.messages.length-1===index
                     return (
                         <div 

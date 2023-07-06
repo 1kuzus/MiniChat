@@ -16,6 +16,10 @@ export default function NewContactModal(props)
         closeModal()
     }
 
+    conat handleRandom=()=>
+    {
+    }
+
     return (
         <>
             <Modal.Header closeButton>Create Contact</Modal.Header>
@@ -29,7 +33,8 @@ export default function NewContactModal(props)
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" ref={nameRef} required></Form.Control>
                     </Form.Group>
-                    <Button type="submit" style={{marginTop:'10px'}}>Create</Button>
+                    <Button type="submit" style={{marginTop:'16px',marginRight:'16px'}}>Create</Button>
+                    <Button variant="secondary" style={{marginTop:'16px'}} onClick={handleRandom}>Random</Button>
                 </Form>
             </Modal.Body>
         </>
