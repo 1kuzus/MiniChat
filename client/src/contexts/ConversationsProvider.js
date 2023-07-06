@@ -1,4 +1,4 @@
-import React,{useContext,createContext,useState} from 'react'
+import React,{useContext,createContext,useState,useEffect,useCallback} from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import {useContacts} from './ContactsProvider'
 import {useSocket} from './SocketProvider'
@@ -36,15 +36,21 @@ export function ConversationsProvider(props)
     const [conversations,setConversations]=useLocalStorage('conversations',[])
     const [selectConversationIndex,setSelectConversationIndex]=useState(0)
 
+    useEffect(()=>
+    {
+        if(socket===null) return
+        socket.on('receive-message',sendMessage)
+        return ()=>socket.off('receive-message')
+    },[socket,addMessageToConversation])
+
     const createConversation=(idList)=>
     {
         //idList是选择的添加进聊天的联系人的id数组
         setConversations((prevConversations)=>[...prevConversations,{idList,messages:[]}])
     }
 
-    const sendMessage=(idList,text)=>
+    const addMessageToConversation=useCallback((senderId,idList,text)=>
     {
-        const senderId=id
         setConversations((prevConversations)=>
         {
             let isNewConversation=true//判断是否增添了新的对话
@@ -71,6 +77,12 @@ export function ConversationsProvider(props)
                 return newConversations
             }
         })
+    },[setConversations])
+
+    const sendMessage=(idList,text)=>
+    {
+        socket.emit('send-message',{idList,text})
+        addMessageToConversation(id,idList,text)
     }
 
     //原来的conversations中每个对话对象只有id列表和消息列表，现在希望加入name字段
