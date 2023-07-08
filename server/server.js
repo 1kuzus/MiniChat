@@ -14,7 +14,7 @@ io.on('connection',(socket)=>
             //一个删除了接收人的列表
             const newIdList=idList.filter(i=>i!==idItem)
             newIdList.push(id)
-            socket.broadcast.to(idItem).emit('receive-message',{idList:newIdList,sender:id,text})
+            socket.broadcast.to(idItem).emit('receive-message',id,newIdList,text)
         })
     })
 })

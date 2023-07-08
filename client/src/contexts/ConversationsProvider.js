@@ -44,6 +44,7 @@ export function ConversationsProvider(props)
 
     const addMessageToConversation=useCallback((senderId,idList,text)=>
     {
+        console.log('---',senderId,idList,text)
         setConversations((prevConversations)=>
         {
             let isNewConversation=true//判断是否增添了新的对话
@@ -88,7 +89,7 @@ export function ConversationsProvider(props)
     const formattedConversations=conversations.map((conversation,index)=>
     {
         console.log(conversation,'!!');
-        const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id)))
+        const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id))||{id:id,name:id})
         const messages=conversation.messages.map((message)=>
         {
             const sender=contacts.find(contact=>(contact.id===message.senderId))//找到senderId对应的联系人
@@ -102,6 +103,7 @@ export function ConversationsProvider(props)
             }
         })
         const selected=index===selectConversationIndex
+        console.log({contactList,messages,selected});
         return {contactList,messages,selected}//构造出新的conversations对象
     })
 

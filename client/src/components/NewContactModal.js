@@ -19,8 +19,9 @@ export default function NewContactModal(props)
 
     const handleRandom=()=>
     {
-        idRef.current.value=uuidV4().slice(-12,-1)
-        nameRef.current.value=uuidV4().slice(-12,-1)
+        const uuid=uuidV4().slice(-12,-1)
+        idRef.current.value=uuid
+        nameRef.current.value=uuid
     }
 
     return (
