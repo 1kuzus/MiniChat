@@ -12,4 +12,5 @@ npm run dev --prefix ./server
 ## Add conversation/contact
 ![image](https://github.com/1kuzus/MiniChat/blob/main/img/1.png)
 
+## Send Messages
 ![image](https://github.com/1kuzus/MiniChat/blob/main/img/2.png)
