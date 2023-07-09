@@ -1,5 +1,5 @@
 import React,{useRef} from 'react'
-import {Modal,Form,Button,Alert} from 'react-bootstrap'
+import {Modal,Form,Button} from 'react-bootstrap'
 import {useContacts} from '../contexts/ContactsProvider'
 import {v4 as uuidV4} from 'uuid'
 
