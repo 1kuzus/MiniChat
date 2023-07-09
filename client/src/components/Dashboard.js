@@ -3,7 +3,6 @@ import Sidebar from './Sidebar'
 import OpenConversation from './OpenConversation'
 import {useConversations} from '../contexts/ConversationsProvider'
 
-
 export default function Dashboard(props)
 {
     const {id}=props

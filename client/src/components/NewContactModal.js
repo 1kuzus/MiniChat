@@ -1,5 +1,5 @@
 import React,{useRef} from 'react'
-import {Modal,Form,Button} from 'react-bootstrap'
+import {Modal,Form,Button,Alert} from 'react-bootstrap'
 import {useContacts} from '../contexts/ContactsProvider'
 import {v4 as uuidV4} from 'uuid'
 
@@ -7,13 +7,20 @@ export default function NewContactModal(props)
 {
     const {closeModal}=props
     const idRef=useRef()
-    const {createContact}=useContacts()
+    const {contacts,createContact}=useContacts()
 
     const handleSubmit=(evt)=>
     {
         evt.preventDefault()
-        createContact(idRef.current.value)
-        closeModal()
+        if(!contacts.includes(idRef.current.value))
+        {
+            createContact(idRef.current.value)
+            closeModal()
+        }
+        else
+        {
+            alert('Contact already exists.')
+        }
     }
 
     const handleRandom=()=>

@@ -3,19 +3,21 @@ import {Button,Form,InputGroup} from 'react-bootstrap'
 import {useConversations} from '../contexts/ConversationsProvider'
 import './OpenConversation.css'
 
-export default function OpenConversation()
+export default function OpenConversation(props)
 {
+    const {id}=props
     const [text,setText]=useState('')
     const {sendMessage,selectedConversation}=useConversations()
+
     const lastMessageRef=useCallback((node)=>
     {
-        node && node.scrollIntoView()
+        node&&node.scrollIntoView()
     },[])
 
     const handleSubmit=(evt)=>
     {
         evt.preventDefault()
-        sendMessage(selectedConversation.contactList.map(c=>c.id),text)
+        sendMessage(selectedConversation.idList,text)
         setText('')
     }
 
@@ -23,7 +25,8 @@ export default function OpenConversation()
         <div className="open-conversation-container">
             <div className="messages-container">
                 {selectedConversation.messages.map((message,index)=>{
-                    const {fromMe,senderName,text}=message
+                    const {senderId,text}=message
+                    const fromMe=(senderId===id)
                     const isLast=selectedConversation.messages.length-1===index
                     return (
                         <div 
@@ -36,8 +39,12 @@ export default function OpenConversation()
                                 color:fromMe?'white':'black',
                                 backgroundColor:fromMe?'#0d6efd':'#ffffff',
                                 border:fromMe?'none':'1px solid #dddddd'
-                            }}>{text}</div>
-                            <div className="message-sender small" style={{marginLeft:fromMe?'auto':'0'}}>{senderName}</div>
+                            }}>
+                                {text}
+                            </div>
+                            <div className="message-sender small" style={{marginLeft:fromMe?'auto':'0'}}>
+                                {fromMe?'You':senderId}
+                            </div>
                         </div>
                     )
                 })}

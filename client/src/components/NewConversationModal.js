@@ -7,7 +7,7 @@ export default function NewConversationModal(props)
 {
     const {closeModal}=props
     const {contacts}=useContacts()
-    const {createConversation}=useConversations()
+    const {arrayEqual,conversations,createConversation}=useConversations()
     const [selectedContactIds,setSelectedContactIds]=useState([])
 
     const handleCheck=(cid)=>
@@ -28,8 +28,30 @@ export default function NewConversationModal(props)
     const handleSubmit=(evt)=>
     {
         evt.preventDefault()
-        createConversation(selectedContactIds)
-        closeModal()
+        if(!selectedContactIds.length)
+        {
+            alert('No contacts were selected.')
+        }
+        else
+        {
+            let isNewConversation=true
+            const existingConversationIdLists=conversations.map(c=>c.idList)
+            existingConversationIdLists.forEach((idList)=>{
+                if(arrayEqual(selectedContactIds,idList))
+                {
+                    isNewConversation=false
+                }
+            })
+            if(!isNewConversation)
+            {
+                alert('Conversation already exists')
+            }
+            else
+            {
+                createConversation(selectedContactIds)
+                closeModal()
+            }
+        }
     }
 
     return (

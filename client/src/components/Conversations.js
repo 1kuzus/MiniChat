@@ -4,7 +4,7 @@ import {useConversations} from '../contexts/ConversationsProvider'
 
 export default function Conversations()
 {
-    const {conversations,setSelectConversationIndex}=useConversations()
+    const {conversations,selectedIndex,setSelectedIndex}=useConversations()
 
     return (
         <ListGroup variant="flush">
@@ -13,10 +13,10 @@ export default function Conversations()
                 <ListGroup.Item
                     key={index}
                     action
-                    onClick={()=>{setSelectConversationIndex(index)}}
-                    active={conversation.selected}
+                    onClick={()=>{setSelectedIndex(index)}}
+                    active={index===selectedIndex}
                 >
-                    {conversation.contactList.join(', ')}
+                    {conversation.idList.join(', ')}
                 </ListGroup.Item>
             ))}
         </ListGroup>
