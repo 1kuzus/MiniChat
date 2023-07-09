@@ -4,12 +4,7 @@ import {useSocket} from './SocketProvider'
 
 const ConversationsContext=createContext()
 
-function arrayEqual(a,b)
-{
-    a.sort()
-    b.sort()
-    return a.join('')===b.join('')
-}
+const arrayEqual=(a,b)=>a.sort().join('')===b.sort().join('')
 
 export function useConversations()
 {
@@ -79,7 +74,6 @@ export function ConversationsProvider(props)
         setSelectedIndex,
         createConversation,
         sendMessage,
-        arrayEqual,
     }
     
     return (

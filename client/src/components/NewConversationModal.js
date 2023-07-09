@@ -3,11 +3,13 @@ import {Modal,Form,Button} from 'react-bootstrap'
 import {useContacts} from '../contexts/ContactsProvider'
 import {useConversations} from '../contexts/ConversationsProvider'
 
+const arrayEqual=(a,b)=>a.sort().join('')===b.sort().join('')
+
 export default function NewConversationModal(props)
 {
     const {closeModal}=props
     const {contacts}=useContacts()
-    const {arrayEqual,conversations,createConversation}=useConversations()
+    const {conversations,createConversation}=useConversations()
     const [selectedContactIds,setSelectedContactIds]=useState([])
 
     const handleCheck=(cid)=>
