@@ -10,17 +10,17 @@ export default function NewConversationModal(props)
     const {createConversation}=useConversations()
     const [selectedContactIds,setSelectedContactIds]=useState([])
 
-    const handleCheck=(id)=>
+    const handleCheck=(cid)=>
     {
         setSelectedContactIds(prevSelectedContactIds=>
         {
-            if(prevSelectedContactIds.includes(id))
+            if(prevSelectedContactIds.includes(cid))
             {
-                return prevSelectedContactIds.filter(itemId=>(itemId!==id))
+                return prevSelectedContactIds.filter(id=>(id!==cid))
             }
             else
             {
-                return [...prevSelectedContactIds,id]
+                return [...prevSelectedContactIds,cid]
             }
         })
     }
@@ -37,14 +37,14 @@ export default function NewConversationModal(props)
             <Modal.Header closeButton>Create Conversation</Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                    {contacts.map((contact)=>
+                    {contacts.map((cid)=>
                     (
-                        <Form.Group controlId={contact.id} key={contact.id}>
+                        <Form.Group controlId={cid} key={cid}>
                             <Form.Check
                                 type="checkbox"
-                                value={selectedContactIds.includes(contact.id)}
-                                label={contact.name}
-                                onChange={()=>{handleCheck(contact.id)}}
+                                value={selectedContactIds.includes(cid)}
+                                label={cid}
+                                onChange={()=>{handleCheck(cid)}}
                             />
                         </Form.Group>
                     ))}

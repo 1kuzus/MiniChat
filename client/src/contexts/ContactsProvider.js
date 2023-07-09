@@ -13,9 +13,9 @@ export function ContactsProvider(props)
     const {children}=props
     const [contacts,setContacts]=useLocalStorage('contacts',[])
     
-    const createContact=(id,name)=>
+    const createContact=(cid)=>
     {
-        setContacts((prevContacts)=>[...prevContacts,{id,name}])
+        setContacts((prevContacts)=>[...prevContacts,cid])
     }
 
     return (

@@ -44,7 +44,6 @@ export function ConversationsProvider(props)
 
     const addMessageToConversation=useCallback((senderId,idList,text)=>
     {
-        console.log('---',senderId,idList,text)
         setConversations((prevConversations)=>
         {
             let isNewConversation=true//判断是否增添了新的对话
@@ -88,15 +87,16 @@ export function ConversationsProvider(props)
     //原来的conversations中每个对话对象只有id列表和消息列表，现在希望加入name字段
     const formattedConversations=conversations.map((conversation,index)=>
     {
-        console.log(conversation,'!!');
-        const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id))||{id:id,name:id})
+        // //从联系人列表中查询id，假如发消息的人还没有被添加进contact列表，就用
+        // const contactList=conversation.idList.map(id=>contacts.find(contact=>(contact.id===id))||{id:id,name:id})
         const messages=conversation.messages.map((message)=>
         {
-            const sender=contacts.find(contact=>(contact.id===message.senderId))//找到senderId对应的联系人
+            const senderId=message.senderId
+            const sender=contacts.find(contact=>(contact.id===senderId))||{id:senderId,name:senderId}//找到senderId对应的联系人
             //如果senderId是登录账号，则contacts不会包含此id，sender为undefined
             const senderName=(sender&&sender.name)||'You'//如果sender是登录账号，设名称为You
             return {
-                senderId:message.senderId,
+                senderId,
                 senderName,//新加入
                 text:message.text,
                 fromMe:(id===message.senderId)//新加入

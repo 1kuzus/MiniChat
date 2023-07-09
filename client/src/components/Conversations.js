@@ -16,7 +16,7 @@ export default function Conversations()
                     onClick={()=>{setSelectConversationIndex(index)}}
                     active={conversation.selected}
                 >
-                    {conversation.contactList.map(c=>c.name).join(', ')}
+                    {conversation.contactList.join(', ')}
                 </ListGroup.Item>
             ))}
         </ListGroup>
