@@ -14,3 +14,7 @@ npm run dev --prefix ./server
 
 ## Send Messages
 ![image](https://github.com/1kuzus/MiniChat/blob/main/img/2.png)
+
+<br>
+
+**1kuzus**
