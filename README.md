@@ -9,7 +9,7 @@ npm start --prefix ./client
 npm run dev --prefix ./server
 ```
 
-## Add conversation/contact
+## Add Conversation/Contact
 ![image](https://github.com/1kuzus/MiniChat/blob/main/img/1.png)
 
 ## Send Messages
